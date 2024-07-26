@@ -13,10 +13,31 @@ With the ease of booking and canceling hotel reservations online, **hotel cancel
 The [Hotel Reservations Dataset](https://www.kaggle.com/datasets/ahsan81/hotel-reservations-classification-dataset) extracted from Kaggle contains 36,275 entries of unique bookings ranging from 2017 to 2018. There are 17 features in addition to the target variable, `booking_status`. To prepare for modeling, I use `OneHotEncoder` on the categorical variables and `StandardScaler` on the quantitative variables.
 
 # Modeling
+The baseline model is a logistic regression, as logistic regressions are useful for inary outcomes. The binary outcome we are predicting in this case is whether a hotel booking will be canceled or not. Once the model was created, I examined the p-values of each of the features to determine which features are statistically significant. I then used the statistically significant features for the future iterations of the model.
 
+I then moved to a Decision Tree Classifier, where I investigated differenced in the following parameters: `max_depth`, `min_samples_split`, `min_samples_leaf` and `max_features`. 
+
+The final model is a Decision Tree Classifier with `max_depth` = 7. This model determined that the 4 most important features when determining hotel booking cancelations are Lead Time, Reservation Booked Online, Average Price Per Room and Number of Special Requests. 
 
 # Evaluation
+The following metrics were used to evalute the models:
+**Accuracy**: This metric is used to measure the total number of predictions the model gets right, including both true positives and true negatives. This is a straight-forward metric that would be easy for stakeholders to understand.
+Baseline Model: 80%
+Final Model: 85%
 
+**Precision**: This metric is used to measure how precise the predictions are. In other words, how many of the predicted positives are truly positive? This is important in this model because if the model predicts that a reservation will be canceled, we want to ensure its precision before selling that room to another guest in the anticipation that the original reservation will be canceled.
+Baseline Model: 75%
+Final Model: 86%
+
+**AUC**: This metric compares the false positive and true positive rates. We want this metric as close to 1.0 as possible, while 0.5 would be considered useless.
+Baseline Model: 0.76
+Final Model: 0.8
+
+**Confusion Matrix**: This visualizes the number of true positives, false positives, true negatives and false negatives. This visual is useful to show how many and what kind of errors the model is producing. In this instance, it is helpful to compare the number of false positives to the number of false negatves, as we are looking to reduce the number of false positives.
+Baseline Model:
+<img src="images/baseline_model_cm.png/" style="height:200px">
+Final Model: 
+<img src="images/final_model_cm.png/" style="height:200px">
 
 # Conclusion
 - I recommend **using a Decision Tree Classifier** with `max_depth=7`. This model can be used for predicting whether a customer will or will not cancel their hotel reservation. Once the number of expected cancelations is predicted, I would recommend **overselling approximately 87% of those rooms** to ensure the hotel does not lose money on the potential profits of those rooms.
