@@ -22,22 +22,22 @@ The final model is a Decision Tree Classifier with `max_depth` = 7. This model d
 # Evaluation
 The following metrics were used to evalute the models:
 **Accuracy**: This metric is used to measure the total number of predictions the model gets right, including both true positives and true negatives. This is a straight-forward metric that would be easy for stakeholders to understand.
-Baseline Model: 80%
-Final Model: 85%
+<br>Baseline Model: 80%
+<br>Final Model: 85%
 
 **Precision**: This metric is used to measure how precise the predictions are. In other words, how many of the predicted positives are truly positive? This is important in this model because if the model predicts that a reservation will be canceled, we want to ensure its precision before selling that room to another guest in the anticipation that the original reservation will be canceled.
-Baseline Model: 75%
-Final Model: 86%
+<br>Baseline Model: 75%
+<br>Final Model: 86%
 
 **AUC**: This metric compares the false positive and true positive rates. We want this metric as close to 1.0 as possible, while 0.5 would be considered useless.
-Baseline Model: 0.76
-Final Model: 0.8
+<br>Baseline Model: 0.76
+<br>Final Model: 0.8
 
 **Confusion Matrix**: This visualizes the number of true positives, false positives, true negatives and false negatives. This visual is useful to show how many and what kind of errors the model is producing. In this instance, it is helpful to compare the number of false positives to the number of false negatves, as we are looking to reduce the number of false positives.
-Baseline Model:
-<img src="images/baseline_model_cm.png/" style="height:200px">
-Final Model: 
-<img src="images/final_model_cm.png/" style="height:200px">
+<br>Baseline Model:
+<br><img src="images/baseline_model_cm.png/" style="height:300px">
+<br>Final Model: 
+<br><img src="images/final_model_cm.png/" style="height:300px">
 
 # Conclusion
 - I recommend **using a Decision Tree Classifier** with `max_depth=7`. This model can be used for predicting whether a customer will or will not cancel their hotel reservation. Once the number of expected cancelations is predicted, I would recommend **overselling approximately 87% of those rooms** to ensure the hotel does not lose money on the potential profits of those rooms.
